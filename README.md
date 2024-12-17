@@ -164,3 +164,85 @@ The request body should be in JSON format and include the following fields:
 
 - Ensure that the email and password provided match an existing user in the system.
 - Passwords are compared securely using hashing.
+
+---
+
+## Endpoint: `user/profile`
+
+### Method: `GET`
+
+### Description:
+
+This endpoint is used to retrieve the authenticated user's profile information.
+
+### Responses:
+
+- **200 OK**:
+
+  - **Description**: User profile successfully retrieved.
+  - **Body**: Returns the user object.
+  - **Example**:
+    ```json
+    {
+      "user": {
+        "_id": "60d0fe4f5311236168a109ca",
+        "fullname": {
+          "firstname": "John",
+          "lastname": "Doe"
+        },
+        "email": "john.doe@example.com",
+        "role": "user"
+      }
+    }
+    ```
+
+- **401 Unauthorized**:
+
+  - **Description**: User is not authenticated.
+  - **Body**: Returns an error message.
+  - **Example**:
+    ```json
+    {
+      "message": "Unauthorized"
+    }
+    ```
+
+- **500 Internal Server Error**:
+  - **Description**: An error occurred on the server.
+  - **Body**: Returns an error message.
+
+### Notes:
+
+- This endpoint requires authentication. Ensure the user is logged in and has a valid token.
+
+---
+
+## Endpoint: `user/logout`
+
+### Method: `GET`
+
+### Description:
+
+This endpoint is used to log out the authenticated user by clearing the authentication token.
+
+### Responses:
+
+- **200 OK**:
+
+  - **Description**: User successfully logged out.
+  - **Body**: Returns a success message.
+  - **Example**:
+    ```json
+    {
+      "message": "Logged out"
+    }
+    ```
+
+- **500 Internal Server Error**:
+  - **Description**: An error occurred on the server.
+  - **Body**: Returns an error message.
+
+### Notes:
+
+- This endpoint requires authentication. Ensure the user is logged in and has a valid token.
+- The token is added to a blacklist to prevent further use.

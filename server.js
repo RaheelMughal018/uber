@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/databaseConnection");
 const UserRoutes = require("./routes/user.routes");
 
@@ -15,6 +16,8 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
+app.use(cookieParser());
 
 app.use("/api/user", UserRoutes);
 
