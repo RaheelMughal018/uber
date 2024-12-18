@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/databaseConnection");
 const UserRoutes = require("./routes/user.routes");
+const captainRoutes = require("./routes/captain.routes");
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(
 app.use(cookieParser());
 
 app.use("/api/user", UserRoutes);
+app.use("/api/captain", captainRoutes);
 
 connectDB()
   .then(() => {
