@@ -347,3 +347,91 @@ The request body should be in JSON format and include the following fields:
 
 - Ensure that the email provided is unique and not already registered in the system.
 - Passwords are securely hashed before being stored in the database.
+
+---
+
+## Endpoint: `captain/profile`
+
+### Method: `GET`
+
+### Description:
+
+This endpoint is used to retrieve the authenticated captain's profile information.
+
+### Responses:
+
+- **200 OK**:
+
+  - **Description**: Captain profile successfully retrieved.
+  - **Body**: Returns the captain object.
+  - **Example**:
+    ```json
+    {
+      "captain": {
+        "_id": "60d0fe4f5311236168a109cb",
+        "fullname": {
+          "firstname": "Jane",
+          "lastname": "Doe"
+        },
+        "email": "jane.doe@example.com",
+        "vehicle": {
+          "color": "Red",
+          "plate": "XYZ123",
+          "capacity": 4,
+          "vehicle_type": "car"
+        },
+        "status": "inactive"
+      }
+    }
+    ```
+
+- **401 Unauthorized**:
+
+  - **Description**: Captain is not authenticated.
+  - **Body**: Returns an error message.
+  - **Example**:
+    ```json
+    {
+      "message": "Unauthorized"
+    }
+    ```
+
+- **500 Internal Server Error**:
+  - **Description**: An error occurred on the server.
+  - **Body**: Returns an error message.
+
+### Notes:
+
+- This endpoint requires authentication. Ensure the captain is logged in and has a valid token.
+
+---
+
+## Endpoint: `captain/logout`
+
+### Method: `GET`
+
+### Description:
+
+This endpoint is used to log out the authenticated captain by clearing the authentication token.
+
+### Responses:
+
+- **200 OK**:
+
+  - **Description**: Captain successfully logged out.
+  - **Body**: Returns a success message.
+  - **Example**:
+    ```json
+    {
+      "message": "Logged out"
+    }
+    ```
+
+- **500 Internal Server Error**:
+  - **Description**: An error occurred on the server.
+  - **Body**: Returns an error message.
+
+### Notes:
+
+- This endpoint requires authentication. Ensure the captain is logged in and has a valid token.
+- The token is cleared from the client to prevent further use.
